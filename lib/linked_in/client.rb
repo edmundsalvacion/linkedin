@@ -105,6 +105,13 @@ module LinkedIn
         end
       end
 
+      start = options[:start] || 0
+      path += "?start=#{start.to_s}"
+
+      if options[:count]
+        path += "&count=#{options[:count].to_s}"
+      end
+
       Connections.from_xml(get(path)).profiles
     end
 
